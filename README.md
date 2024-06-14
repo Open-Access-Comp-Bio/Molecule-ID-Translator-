@@ -1,2 +1,2 @@
-# Molecule-ID-Translator-
+# TIMID
 Fill me out later.
