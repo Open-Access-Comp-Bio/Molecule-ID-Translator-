@@ -47,19 +47,11 @@ def database_search(gene_id):
             print(f"NCBI Accession Codes: {accession_codes}")
         else:
             print(f"No accession code was found for {display_name} in NCBI")
-            
-
-        
-        
-
-        
 
     else:
         print(f"Failed to retrieve data: {response.status_code}")
     print(accession_codes)
 
-
-#Actual Loop
 #Check if ID is good. "ENSG" for humans otherwise, 
 # there is a three letter code for the species then a 11 number code with a period followed by the version. 
 #For now, this script will only look at human sequences. 
@@ -70,12 +62,7 @@ if re.match(e_id_format, e_id) or re.match(e_id_format2, e_id):
     print("Valid ID has been entered")
     #continue on inputting e_id into the first function. 
     database_search(e_id)
-   
-    #Check to see if the gene name is in the NCBI API. 
-    #Extract any and all ID's associated with said name. 
-    #Do another if statment seeing if there is GeneBank and/or RefSeq ID's, and if not then have an error print out. 
-    #If either ID is present then have it print out. 
-    #Will probably have the ID's saved in a list in case there are isotopes or other versions of hte gene that need to be printed out. 
+
 else:
     print("Invalid ID")
     
