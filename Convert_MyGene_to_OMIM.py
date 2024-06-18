@@ -20,4 +20,4 @@ def Convert_MyGene_to_OMIM(mygeneid):
 
 
 # Testing the function:
-Convert_MyGene_to_OMIM("MC1R")
+Convert_MyGene_to_OMIM(1000)
