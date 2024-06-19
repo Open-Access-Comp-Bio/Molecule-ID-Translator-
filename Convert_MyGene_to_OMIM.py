@@ -20,11 +20,10 @@ def get_MyGene(gene):
         return None
 
 
-
 def convert_MyGene_to_OMIM(mygeneid):
     '''This function takes a MyGene ID number as an input, and prints the OMIM ID number as an output.
     If there is not a match in the MyGene database, an error message is logged that the ID is not valid.
-    Note: This function is not meant for obtaining the OMIM ID from the common gene symbol, only for converting from the MyGene ID number.'''
+    Note: This function cannot obtain the OMIM ID from the common gene symbol, only convert the MyGene ID number to it.'''
     r = requests.get(f"https://mygene.info/v3/gene/{mygeneid}?fields=all&dotfield=false&size=10")
     r = r.json()
     try: 
@@ -43,8 +42,6 @@ def get_OMIM(gene):
     return omimid
 
 
-
-  
 # Testing the functions:
 get_MyGene("MC1R")       
 convert_MyGene_to_OMIM(4157)
