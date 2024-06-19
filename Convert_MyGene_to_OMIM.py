@@ -43,6 +43,7 @@ def get_OMIM(gene):
     return omimid
 
 
+
   
 # Testing the functions:
 get_MyGene("MC1R")       
