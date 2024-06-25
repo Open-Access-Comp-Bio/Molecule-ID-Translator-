@@ -7,7 +7,7 @@ from Bio import Entrez
 import urllib.parse
 import json
 import xml.etree.ElementTree as ET
-from constant import uniprot_url
+from constants import uniprot_url
 
 
 #For future scripts, will try to have this be a list or data frame column to loop through 
@@ -52,7 +52,25 @@ def ncbi_search(display_name): #for finding Gene ID from NCBI
         found_id = record["IdList"][0]
         print(f"NCBI Gene ID:{found_id}")
             
+def uniprot_search(display_name):
+    query = f"gene:{display_name} AND organism_id:9606"
     
+    params = {
+        "query": query,
+        "format":"json",
+        "size": 10
+    }
+    
+    response = requests.get(uniprot_url, params=params)
+    
+    if response.status_code != 200:
+        print(f"Unable to fulfill request: {response.status_code}")
+    else:
+        data=response.json()
+        for i in data.get("results", []):
+            accession_codes = i.get("primaryAccession")
+    print(f"Uniprot ID: {accession_codes}")
+        
             
 
     
