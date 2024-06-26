@@ -14,9 +14,10 @@ def get_MyGene(gene):
     r = r.json()
     try: 
         MyGene_ID = r["hits"][0]["_id"]
+        MyGene_ID = int(MyGene_ID)
         return MyGene_ID
     except:
-        logging.error("Error: Invalid Gene Symbol")
+        logging.error("Error: Invalid Gene Symbol or Name")
         return None
 
 
@@ -28,6 +29,7 @@ def convert_MyGene_to_OMIM(mygeneid):
     r = r.json()
     try: 
         OMIM_ID = r["MIM"]
+        OMIM_ID = int(OMIM_ID)
         return OMIM_ID
     except:
         logging.error("Error: Invalid MyGene ID or Gene Not Found in OMIM Database")
@@ -37,12 +39,11 @@ def convert_MyGene_to_OMIM(mygeneid):
 def get_OMIM(gene):
     '''This function takes a gene symbol as an input, and returns the OMIM ID number for the gene.
     This function uses the previous two functions, so an appropriate error message is logged at any step that fails.'''
-    mygeneid = get_MyGene(gene)
-    omimid = convert_MyGene_to_OMIM(mygeneid)
-    return omimid
-
-
-# Testing the functions:
-get_MyGene("MC1R")       
-convert_MyGene_to_OMIM(4157)
-get_OMIM("MC1R")
+    try:
+        mygeneid = get_MyGene(gene)
+        omimid = convert_MyGene_to_OMIM(mygeneid)
+        omimid = int(omimid)
+        return omimid
+    except: 
+        logging.error("Error: Invalid Gene or Gene Not Found in OMIM Database")
+        return None
